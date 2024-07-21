@@ -1,7 +1,10 @@
 import './App.css'
+import { Homepage } from './pages/homepage/Homepage'
 
 function App() {
-  return <h1>Weather App</h1>
+  return <>
+  <Homepage></Homepage>
+  </>
 }
 
 export default App
