@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react"
-import { Weather } from "../../data/typs"
 import { weatherService } from "../../services/weather.service"
 import { StyledForecast } from "./styles"
+import { useQuery } from '@tanstack/react-query'
 
 export function Forecast() {
-    const [weather, setWeather] = useState<Weather>()
-
-    useEffect(() => {
-        const currWeather = weatherService.query()
-        setWeather(currWeather)
-    }, [])
+    const { data: weather } = useQuery({
+        queryKey: ['weather'],
+        queryFn: () => weatherService.fetchWeather('Tel Aviv')
+    })
 
     if (!weather) return <div>loading...</div>
     return <StyledForecast>
