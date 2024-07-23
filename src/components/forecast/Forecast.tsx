@@ -1,14 +1,27 @@
-import { weatherService } from "../../services/weather.service"
-import { StyledForecast } from "./styles"
+import { useEffect } from "react"
 import { useQuery } from '@tanstack/react-query'
 
-export function Forecast() {
-    const { data: weather } = useQuery({
+import { weatherService } from "../../services/weather.service"
+
+import { StyledForecast } from "./styles"
+
+interface ForecastProps {
+    location: string
+}
+
+export function Forecast({ location }: ForecastProps) {
+    console.log(location)
+    const { data: weather, isPending, isError, error, refetch } = useQuery({
         queryKey: ['weather'],
-        queryFn: () => weatherService.fetchWeather('Tel Aviv')
+        queryFn: () => weatherService.fetchWeather(location)
     })
 
-    if (!weather) return <div>loading...</div>
+    useEffect(() => {
+        refetch()
+    }, [location])
+
+    if (isError) return <div>{error.message}</div>
+    if (isPending || !weather) return <div>Loading...</div>
     return <StyledForecast>
         <h1 className="weather-location">{weather.name}, {weather.country}</h1>
         <h1 className="weather-temp">{weather.tempInC}<span>°C</span></h1>

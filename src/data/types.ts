@@ -8,3 +8,10 @@ export interface Weather {
     humidity: number,
     feelslikeInC: number
 }
+
+export interface LocationOption {
+    _id: number
+    name: string,
+    country: string,
+    url: string
+}
