@@ -3,16 +3,18 @@ import { useQuery } from '@tanstack/react-query'
 
 import { weatherService } from "../../services/weather.service"
 
+import { Location } from "../../data/types"
+
 import { StyledForecast } from "./styles"
 
 interface ForecastProps {
-    location: string
+    location: Location
+    queryKey: string
 }
 
-export function Forecast({ location }: ForecastProps) {
-    console.log(location)
+export function Forecast({ location, queryKey }: ForecastProps) {
     const { data: weather, isPending, isError, error, refetch } = useQuery({
-        queryKey: ['weather'],
+        queryKey: [queryKey],
         queryFn: () => weatherService.fetchWeather(location)
     })
 
@@ -29,7 +31,7 @@ export function Forecast({ location }: ForecastProps) {
         <h2>{weather.condition}</h2>
         <h2 className="weather-details"><span>Wind: {weather.windKph}kph </span>
             <span>Humidity: {weather.humidity}% </span>
-            <span>Feels like: {weather.feelslikeInC}°C</span>
+            <span>Feels like: {weather.feelsLikeInC}°C</span>
         </h2>
     </StyledForecast>
 }

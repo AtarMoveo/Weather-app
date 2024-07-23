@@ -6,10 +6,15 @@ export interface Weather {
     icon: string
     windKph: number,
     humidity: number,
-    feelslikeInC: number
+    feelsLikeInC: number
 }
 
-export interface LocationOption {
+export interface Location {
+    latitude: number,
+    longitude: number
+}
+
+export interface LocationOption extends Location {
     _id: number
     name: string,
     country: string,

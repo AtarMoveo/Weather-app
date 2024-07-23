@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledLocationSearch = styled.section`
     position: relative;
     .location-options-container {
-        min-width: 500px;
+        min-width: 100%;
         position: absolute;
         background-color: lightblue;
         border-radius: 4px;

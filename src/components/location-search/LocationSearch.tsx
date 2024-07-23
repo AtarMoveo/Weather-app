@@ -5,10 +5,12 @@ import { LocationList } from "../location-list/LocationList"
 
 import { weatherService } from "../../services/weather.service"
 
+import { Location } from "../../data/types"
+
 import { StyledLocationSearch } from "./styles"
 
 interface LocationSearchProps {
-    setLocation: Dispatch<SetStateAction<string>>
+    setLocation: Dispatch<SetStateAction<Location>>
 }
 
 export function LocationSearch({ setLocation }: LocationSearchProps) {
@@ -34,10 +36,11 @@ export function LocationSearch({ setLocation }: LocationSearchProps) {
             value={searchTerm}
             onChange={handleSearchChange}
             placeholder="Enter city name"
+            onBlur={() => setIsListOpen(false)}
         />
         {isListOpen && <div className="location-options-container">
-            {isLoading && <div>Loading optional locations</div>}
-            {(!locationOptions || !locationOptions.length) && <div>No matching locations were found...</div>}
+            {(!locationOptions || isLoading) && <div>Loading optional locations</div>}
+            {locationOptions && !locationOptions.length && <div>No matching locations were found...</div>}
             {locationOptions && !!locationOptions.length &&
                 <LocationList
                     locationOptions={locationOptions}
