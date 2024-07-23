@@ -36,7 +36,7 @@ export function LocationSearch({ setLocation }: LocationSearchProps) {
             value={searchTerm}
             onChange={handleSearchChange}
             placeholder="Enter city name"
-            onBlur={() => setIsListOpen(false)}
+            // onBlur={() => setIsListOpen(false)}
         />
         {isListOpen && <div className="location-options-container">
             {(!locationOptions || isLoading) && <div>Loading optional locations</div>}
