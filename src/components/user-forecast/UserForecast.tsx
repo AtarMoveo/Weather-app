@@ -4,7 +4,7 @@ import { Forecast } from "../forecast/Forecast";
 
 import { Location } from "../../data/types";
 
-import { StyledMainContainer } from "../../pages/homepage/styles";
+import { StyledMainContainer, StyledSectionHeader } from "../../pages/homepage/styles";
 
 export function UserForecast() {
     const [userLocation, setUserLocation] = useState<Location>()
@@ -32,7 +32,7 @@ export function UserForecast() {
     }
 
     return <StyledMainContainer>
-    <h1>Your current location:</h1>
+    <StyledSectionHeader>Your current location:</StyledSectionHeader>
     {!userLocation && <div>Loading...</div>}
     {userLocation && <Forecast location={userLocation} queryKey="userWeather"></Forecast>}
     </StyledMainContainer>

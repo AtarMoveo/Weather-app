@@ -22,14 +22,16 @@ export function Homepage() {
     }, [])
 
     return <StyledHomepage>
-        <StyledMainContainer>
-            <LocationSearch setLocation={setLocation}></LocationSearch>
-            <Forecast
-                location={location}
-                queryKey="weather"
-                setRecentLocationSearch={setRecentLocationSearch}
-            ></Forecast>
-        </StyledMainContainer>
+        <section className="main-forecast-wrapper">
+            <StyledMainContainer>
+                <LocationSearch setLocation={setLocation}></LocationSearch>
+                <Forecast
+                    location={location}
+                    queryKey="weather"
+                    setRecentLocationSearch={setRecentLocationSearch}
+                ></Forecast>
+            </StyledMainContainer>
+        </section>
         <UserForecast></UserForecast>
         <RecentLocationSearches
             recentLocations={recentLocationSearch}

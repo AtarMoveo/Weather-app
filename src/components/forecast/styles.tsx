@@ -3,12 +3,15 @@ import styled from "styled-components";
 export const StyledForecast = styled.section`
     .weather-location {
         margin-block: 1em;
+        font-size: 1.5rem;
     }
     .weather-temp {
         font-size: 7rem;
+        position: relative;
         font-weight: 400;
             span {
-            font-size: 1rem;
+                position: absolute;
+                font-size: 3rem;
         }
     }
     img {

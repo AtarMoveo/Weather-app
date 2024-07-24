@@ -2,6 +2,13 @@ import styled from "styled-components";
 
 export const StyledLocationSearch = styled.section`
     position: relative;
+    input {
+        border-radius: 20px;
+        outline-color: #d3d3d361;
+        outline-width: 1px;
+        border-style: none;
+        padding: 0.6em 1em;
+    }
     .location-options-container {
         min-width: 100%;
         position: absolute;

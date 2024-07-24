@@ -50,9 +50,9 @@ export function Forecast({ location, queryKey, setRecentLocationSearch }: Foreca
         <h1 className="weather-temp">{weather.tempInC}<span>°C</span></h1>
         <img src={weather.icon} alt="weather-condition" />
         <h2>{weather.condition}</h2>
-        <h2 className="weather-details"><span>Wind: {weather.windKph}kph </span>
+        <h3 className="weather-details"><span>Wind: {weather.windKph}kph </span>
             <span>Humidity: {weather.humidity}% </span>
             <span>Feels like: {weather.feelsLikeInC}°C</span>
-        </h2>
+        </h3>
     </StyledForecast>
 }

@@ -1,7 +1,10 @@
 import { Dispatch, SetStateAction } from "react"
-import { Location, LocationOption } from "../../data/types"
-import { StyledMainContainer } from "../../pages/homepage/styles"
+
 import { LocationList } from "../location-list/LocationList"
+
+import { Location, LocationOption } from "../../data/types"
+import { StyledMainContainer, StyledSectionHeader } from "../../pages/homepage/styles"
+import { StyledRecentLocations } from "./styles"
 
 interface RecentLocationSearches {
     recentLocations: LocationOption[],
@@ -10,10 +13,12 @@ interface RecentLocationSearches {
 
 export function RecentLocationSearches({ recentLocations, setLocation }: RecentLocationSearches) {
     return <StyledMainContainer>
-        <h2>Recent locations:</h2>
-        <LocationList
-            locationOptions={recentLocations}
-            setLocation={setLocation}
-        ></LocationList>
+        <StyledRecentLocations>
+            <StyledSectionHeader>Recent locations:</StyledSectionHeader>
+            <LocationList
+                locationOptions={recentLocations}
+                setLocation={setLocation}
+            ></LocationList>
+        </StyledRecentLocations>
     </StyledMainContainer>
 }

@@ -5,9 +5,10 @@ import { LocationList } from "../location-list/LocationList"
 
 import { weatherService } from "../../services/weather.service"
 
-import { Location, LocationOption } from "../../data/types"
+import { Location } from "../../data/types"
 
 import { StyledLocationSearch } from "./styles"
+import { StyledSectionHeader } from "../../pages/homepage/styles"
 
 interface LocationSearchProps {
     setLocation: Dispatch<SetStateAction<Location>>
@@ -30,7 +31,7 @@ export function LocationSearch({ setLocation }: LocationSearchProps) {
     }
 
     return <StyledLocationSearch>
-        <h3>Select location:</h3>
+        <StyledSectionHeader>Select location:</StyledSectionHeader>
         <input
             type="text"
             value={searchTerm}
