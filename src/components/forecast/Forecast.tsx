@@ -1,18 +1,19 @@
-import { useEffect } from "react"
+import { Dispatch, SetStateAction, useEffect } from "react"
 import { useQuery } from '@tanstack/react-query'
 
 import { weatherService } from "../../services/weather.service"
 
-import { Location } from "../../data/types"
+import { Location, LocationOption } from "../../data/types"
 
 import { StyledForecast } from "./styles"
 
 interface ForecastProps {
     location: Location
     queryKey: string
+    setRecentLocationSearch: Dispatch<SetStateAction<LocationOption[]>>
 }
 
-export function Forecast({ location, queryKey }: ForecastProps) {
+export function Forecast({ location, queryKey, setRecentLocationSearch }: ForecastProps) {
     const { data: weather, isPending, isError, error, refetch } = useQuery({
         queryKey: [queryKey],
         queryFn: () => weatherService.fetchWeather(location)
@@ -21,6 +22,25 @@ export function Forecast({ location, queryKey }: ForecastProps) {
     useEffect(() => {
         refetch()
     }, [location])
+
+    useEffect(() => {
+        if (weather && queryKey === 'weather') {
+            const { name, country, latitude, longitude } = weather
+            const _id = Date.now()
+            const newLocation = { _id, name, country, latitude, longitude }
+
+            setRecentLocationSearch((prevLocations) => {
+                const locationExists = prevLocations.some(
+                    (location) => location.name === newLocation.name && location.country === newLocation.country)
+                if (!locationExists) {
+                    const locationsToDisplay = prevLocations.length > 4 ? prevLocations.slice(0, 4) : prevLocations
+                    return [newLocation, ...locationsToDisplay]
+                } else {
+                    return prevLocations
+                }
+            })
+        }
+    }, [weather])
 
     if (isError) return <div>{error.message}</div>
     if (isPending || !weather) return <div>Loading...</div>

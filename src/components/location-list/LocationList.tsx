@@ -5,14 +5,13 @@ import { StyledLocationList } from "./styles"
 interface LocationListProps {
     locationOptions: LocationOption[],
     setLocation: Dispatch<SetStateAction<Location>>
-    setIsListOpen: Dispatch<SetStateAction<boolean>>
+    setIsListOpen?: Dispatch<SetStateAction<boolean>>
 }
 
 export function LocationList({ locationOptions, setLocation, setIsListOpen }: LocationListProps) {
-    
     function handleLocationSelect(location: Location) {
         setLocation(location)
-        setIsListOpen(false)
+        if (setIsListOpen) setIsListOpen(false)
     }
 
     return <StyledLocationList className="clean-list">

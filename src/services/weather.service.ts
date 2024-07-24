@@ -6,20 +6,6 @@ export const weatherService = {
   fetchLocationOptions,
 }
 
-// async function fetchWeather(location: string) {
-//   try {
-//     const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${WEATHER_API_KEY}&q=${location}&aqi=no`);
-//     if (!response.ok) {
-//       throw new Error('An error occurred while fetching weather data')
-//     }
-//     const data = await response.json()
-//     return _convertWeatherDataFormat(data)
-//   } catch (error) {
-//     console.error(error)
-//     throw error
-//   }
-// }
-
 async function fetchLocationOptions(searchTerm: string): Promise<LocationOption[]> {
   try {
     const response = await fetch(`https://api.weatherapi.com/v1/search.json?key=${WEATHER_API_KEY}&q=${searchTerm}`);
@@ -31,7 +17,6 @@ async function fetchLocationOptions(searchTerm: string): Promise<LocationOption[
       _id: loc.id,
       name: loc.name,
       country: loc.country,
-      url: loc.url,
       latitude: loc.lat,
       longitude: loc.lon
     }))
@@ -60,6 +45,8 @@ function _convertWeatherDataFormat(weatherData: any): Weather {
   return {
     name: weatherData.location.name,
     country: weatherData.location.country,
+    latitude: weatherData.location.lat,
+    longitude: weatherData.location.lon,
     condition: weatherData.current.condition.text,
     tempInC: weatherData.current.temp_c,
     icon: weatherData.current.condition.icon,

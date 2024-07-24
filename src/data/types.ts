@@ -1,4 +1,8 @@
-export interface Weather {
+export interface Location {
+    latitude: number,
+    longitude: number
+}
+export interface Weather extends Location{
     name: string,
     country: string,
     condition: string,
@@ -9,14 +13,8 @@ export interface Weather {
     feelsLikeInC: number
 }
 
-export interface Location {
-    latitude: number,
-    longitude: number
-}
-
 export interface LocationOption extends Location {
     _id: number
     name: string,
     country: string,
-    url: string
 }

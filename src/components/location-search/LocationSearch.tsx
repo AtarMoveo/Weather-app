@@ -5,7 +5,7 @@ import { LocationList } from "../location-list/LocationList"
 
 import { weatherService } from "../../services/weather.service"
 
-import { Location } from "../../data/types"
+import { Location, LocationOption } from "../../data/types"
 
 import { StyledLocationSearch } from "./styles"
 
