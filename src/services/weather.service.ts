@@ -52,6 +52,6 @@ function _convertWeatherDataFormat(weatherData: any): Weather {
     icon: weatherData.current.condition.icon,
     windKph: weatherData.current.wind_kph,
     humidity: weatherData.current.humidity,
-    feelsLikeInC: weatherData.current.feelsike_c
+    feelsLikeInC: weatherData.current.feelslike_c
   }
 }
