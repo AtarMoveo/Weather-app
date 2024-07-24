@@ -32,7 +32,7 @@ export function UserForecast() {
     }
 
     return <StyledMainContainer>
-    <h1>Current location:</h1>
+    <h1>Your current location:</h1>
     {!userLocation && <div>Loading...</div>}
     {userLocation && <Forecast location={userLocation} queryKey="userWeather"></Forecast>}
     </StyledMainContainer>

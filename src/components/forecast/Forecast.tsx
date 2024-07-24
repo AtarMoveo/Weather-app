@@ -10,7 +10,7 @@ import { StyledForecast } from "./styles"
 interface ForecastProps {
     location: Location
     queryKey: string
-    setRecentLocationSearch: Dispatch<SetStateAction<LocationOption[]>>
+    setRecentLocationSearch?: Dispatch<SetStateAction<LocationOption[]>>
 }
 
 export function Forecast({ location, queryKey, setRecentLocationSearch }: ForecastProps) {
@@ -29,11 +29,12 @@ export function Forecast({ location, queryKey, setRecentLocationSearch }: Foreca
             const _id = Date.now()
             const newLocation = { _id, name, country, latitude, longitude }
 
-            setRecentLocationSearch((prevLocations) => {
+            setRecentLocationSearch!((prevLocations) => {
                 const locationExists = prevLocations.some(
                     (location) => location.name === newLocation.name && location.country === newLocation.country)
                 if (!locationExists) {
                     const locationsToDisplay = prevLocations.length > 4 ? prevLocations.slice(0, 4) : prevLocations
+                    localStorage.setItem(weatherService.recentLocationsKey, JSON.stringify([newLocation, ...locationsToDisplay]))
                     return [newLocation, ...locationsToDisplay]
                 } else {
                     return prevLocations

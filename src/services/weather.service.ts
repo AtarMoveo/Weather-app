@@ -1,9 +1,12 @@
 import { Location, LocationOption, Weather } from "../data/types"
 
 const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY
+const recentLocationsKey = 'recentLocations'
+
 export const weatherService = {
   fetchWeather,
   fetchLocationOptions,
+  recentLocationsKey
 }
 
 async function fetchLocationOptions(searchTerm: string): Promise<LocationOption[]> {
